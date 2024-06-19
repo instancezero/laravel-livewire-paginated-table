@@ -27,6 +27,7 @@ return new class extends Migration
             $table->decimal('freight');
             $table->string('uom');
             $table->string('vendorPart');
+            $table->timestamps();
         });
     }
     /**

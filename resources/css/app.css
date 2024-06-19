@@ -1,3 +1,159 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+    /* Mobile first styles, extra small display, single column originally up to 580px */
+    /* Now small display: up to 639px */
+    ol.collection {
+        margin: 0;
+        padding: 0;
+    }
+
+    li {
+        list-style: none;
+    }
+
+    ol.collection * {
+        box-sizing: border-box;
+    }
+
+    .item {
+        border: 1px solid gray;
+        border-radius: 2px;
+        padding: 10px;
+    }
+
+    /* Don't display the first item, since it is used to display the header for tabular layouts*/
+    .collection-container > li:first-child {
+        display: none;
+    }
+
+    .attribute::before {
+        content: attr(data-name);
+    }
+
+    /* Attribute name for first column, and attribute value for second column. */
+    .attribute {
+        display: grid;
+        grid-template-columns: minmax(9em, 30%) 1fr;
+    }
+
+    .collection-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: 20px;
+    }
+
+    @media (min-width: 640px) {
+        /* Mobile first styles, small display, dual column originally 581px to 736px */
+        /* Now medium 640px up to 767px */
+        .collection-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 20px;
+        }
+
+    }
+
+    @media (min-width: 768px) {
+        /* Mobile first styles, medium display, table originally 737px and up */
+        /* Now 768 and up */
+
+        .attribute::before {
+            content: none;
+        }
+
+        /* Show the first item, since it is used to display the header for tabular layouts*/
+        .collection-container > li:first-child {
+            display: grid;
+        }
+
+        .item {
+            border: none;
+            padding: 0;
+        }
+
+        /* The maximum column width, that can wrap */
+        .item-container {
+            display: grid;
+            grid-template-columns: 2em 2em 10fr 2fr 2fr 2fr 2fr 4em 6em;
+        }
+
+        .attribute-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(var(--column-width-min), 1fr));
+        }
+
+        /* Definition of wrapping column width for attribute groups. */
+        .part-information {
+            --column-width-min: 10em;
+        }
+
+        .part-id {
+            --column-width-min: 10em;
+        }
+
+        .vendor-information {
+            --column-width-min: 8em;
+        }
+
+        .quantity {
+            --column-width-min: 5em;
+        }
+
+        .cost {
+            --column-width-min: 5em;
+        }
+
+        .duty {
+            --column-width-min: 5em;
+        }
+
+        .freight {
+            --column-width-min: 5em;
+        }
+
+        .collection {
+            border-top: 1px solid gray;
+            border-left: 1px solid gray;
+        }
+
+        /* In order to maximize row lines, only display one line for a cell */
+        .attribute {
+            border-right: 1px solid gray;
+            border-bottom: 1px solid gray;
+            display: block;
+            grid-template-columns: none;
+            padding: 2px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .collection-container > .item-container:first-child {
+            background-color: blanchedalmond;
+        }
+
+        .item-container:hover {
+            background-color: rgb(200, 227, 252);
+        }
+
+        .collection-container {
+            grid-template-columns: none;
+            grid-gap: 0;
+        }
+
+        /* Center header labels */
+        .collection-container > .item-container:first-child .attribute {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-overflow: initial;
+            overflow: auto;
+            white-space: normal;
+        }
+
+
+    }
+}

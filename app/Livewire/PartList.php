@@ -10,8 +10,21 @@ class PartList extends Component
 {
     use WithPagination;
 
+    public function populate(int $count)
+    {
+        Part::factory($count)->create();
+        return redirect()->to('/');
+    }
+
+    public function purge()
+    {
+        Part::truncate();
+        return redirect()->to('/');
+    }
+
     public function render()
     {
-        return view('livewire.parts.list', ['contacts' => Part::paginate(10)]);
+        return view('livewire.parts.list', ['parts' => Part::orderBy('partNumber')->paginate(10)]);
     }
+
 }
