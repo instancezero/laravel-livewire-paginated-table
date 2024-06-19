@@ -19,8 +19,8 @@
                     </div>
                 </div>
                 <div class="attribute-container quantity">
-                    <div class="attribute">Order Qty</div>
-                    <div class="attribute">Receive Qty</div>
+                    <div class="attribute">Order Qty.</div>
+                    <div class="attribute">Receive Qty.</div>
                 </div>
                 <div class="attribute-container cost">
                     <div class="attribute">Cost</div>
@@ -35,42 +35,42 @@
                     <div class="attribute">Freight</div>
                 </div>
                 <div class="attribute">UOM</div>
-                <div class="attribute">Vendor Part Number</div>
+                <div class="attribute">Vendor Part#</div>
             </li>
             <!-- The rest of the items in the list are the actual data -->
             @foreach ($parts as $part)
                 <li class="item item-container" wire:key="{{ $part->id }}">
-                    <div class="attribute" data-name="Select"><input type="checkbox" name="" id="{{ $part->id }}"></div>
-                    <div class="attribute" data-name="#">{{ $loop->index + 1 }}</div>
+                    <div class="attribute md:text-center" data-name="Select"><input type="checkbox" name="" id="{{ $part->id }}"></div>
+                    <div class="attribute md:text-center" data-name="#">{{ $loop->index + 1 }}</div>
                     <div class="attribute-container part-information">
                         <div class="attribute-container part-id">
-                            <div class="attribute" data-name="Part Number">{{ $part->partNumber }}</div>
-                            <div class="attribute" data-name="Part Description">{{ $part->partDescription }}</div>
+                            <div class="attribute" data-name="Part Number:">{{ $part->partNumber }}</div>
+                            <div class="attribute" data-name="Part Description:">{{ $part->partDescription }}</div>
                         </div>
                         <div class="attribute-container vendor-information">
-                            <div class="attribute" data-name="Vendor Number">{{ $part->vendorNumber }}</div>
-                            <div class="attribute" data-name="Vendor Name">{{ $part->vendorName }}</div>
+                            <div class="attribute" data-name="Vendor Number:">{{ $part->vendorNumber }}</div>
+                            <div class="attribute" data-name="Vendor Name:">{{ $part->vendorName }}</div>
                         </div>
                     </div>
                     <div class="attribute-container quantity">
-                        <div class="attribute" data-name="Order Qty">{{ $part->orderQuantity }}</div>
-                        <div class="attribute" data-name="Receive Qty">{{ $part->receiveQuantity }}</div>
+                        <div class="attribute md:text-end" data-name="Order Qty.:">{{ $part->orderQuantity }}</div>
+                        <div class="attribute md:text-end" data-name="Receive Qty.:">{{ $part->receiveQuantity }}</div>
                     </div>
                     <div class="attribute-container cost">
-                        <div class="attribute" data-name="Cost">${{ number_format($part->cost, 2) }}</div>
-                        <div class="attribute" data-name="Extended Cost">
+                        <div class="attribute md:text-end" data-name="Cost:">${{ number_format($part->cost, 2) }}</div>
+                        <div class="attribute md:text-end" data-name="Extended Cost:">
                             ${{ number_format($part->extendedCost, 2) }}</div>
                     </div>
                     <div class="attribute-container duty">
-                        <div class="attribute" data-name="Duty %">{{ number_format($part->dutyPct, 1) }}%</div>
-                        <div class="attribute" data-name="Duty">${{ number_format($part->duty, 2) }}</div>
+                        <div class="attribute md:text-end" data-name="Duty %:">{{ number_format($part->dutyPct, 1) }}%</div>
+                        <div class="attribute md:text-end" data-name="Duty Amount:">${{ number_format($part->duty, 2) }}</div>
                     </div>
                     <div class="attribute-container freight">
-                        <div class="attribute" data-name="Freight %">{{ number_format($part->freightPct, 1) }}%</div>
-                        <div class="attribute" data-name="Freight">${{ number_format($part->freight, 2) }}</div>
+                        <div class="attribute md:text-end" data-name="Freight %:">{{ number_format($part->freightPct, 1) }}%</div>
+                        <div class="attribute md:text-end" data-name="Freight Amount:">${{ number_format($part->freight, 2) }}</div>
                     </div>
-                    <div class="attribute" data-name="UOM">{{ $part->uom }}</div>
-                    <div class="attribute" data-name="Vendor Part Number">{{ $part->vendorPart }}</div>
+                    <div class="attribute md:text-center" data-name="UOM:">{{ $part->uom }}</div>
+                    <div class="attribute" data-name="Vendor Part#:">{{ $part->vendorPart }}</div>
                 </li>
             @endforeach
         </ol>
